@@ -1,9 +1,6 @@
 package edu.escuelaing.arsw;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class Table {
 
@@ -11,6 +8,7 @@ public class Table {
     private Integer[][] table = new Integer[10][10];
     private HashMap<Integer, Actor> players = new HashMap<>();
     private final Random rand = new Random();
+    private ArrayList<Treasure> treasures;
 
     private Table() {
         generarLaberinto();
@@ -90,17 +88,16 @@ public class Table {
         }
     }
 
-    public void print() {
-        for (Integer[] fila : table) {
-            for (Integer celda : fila) {
-                System.out.print(celda + " ");
-            }
-            System.out.println();
-        }
+    public void createTreasure(){
+        TreasureFactory factory = new TreasureFactory(4);
+        treasures = factory.getTreasures();
     }
 
-    public void createThief(){
-        players.put(1, new Thief());
+    public ArrayList<Treasure> getTreasure(){
+        for (Treasure element : treasures) {
+            System.out.println(element);
+        }
+        return treasures;
     }
 
     public Integer[][] getTable() {

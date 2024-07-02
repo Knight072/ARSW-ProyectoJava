@@ -14,7 +14,6 @@ public class PoliceAndThieves {
 
     public PoliceAndThieves() {
         this.table = Table.getInstance();
-        this.table.createThief();
     }
 
     public static void main(String[] args) {
