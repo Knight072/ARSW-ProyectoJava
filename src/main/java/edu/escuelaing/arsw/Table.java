@@ -88,12 +88,14 @@ public class Table {
         }
     }
 
-    public void createTreasure(){
-        TreasureFactory factory = new TreasureFactory(4);
-        treasures = factory.getTreasures();
+    public void createTreasure() {
+        if (treasures == null) {
+            TreasureFactory factory = new TreasureFactory(4);
+            treasures = factory.getTreasures();
+        }
     }
 
-    public ArrayList<Treasure> getTreasure(){
+    public ArrayList<Treasure> getTreasure() {
         for (Treasure element : treasures) {
             System.out.println(element);
         }
