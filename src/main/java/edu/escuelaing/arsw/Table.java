@@ -1,11 +1,15 @@
 package edu.escuelaing.arsw;
 
+import edu.escuelaing.arsw.service.actor.Actor;
+import edu.escuelaing.arsw.service.factory.TreasureFactory;
+import edu.escuelaing.arsw.service.treasure.Treasure;
+
 import java.util.*;
 
 public class Table {
 
     private static Table INSTANCE;
-    private Integer[][] table = new Integer[10][10];
+    private Integer[][] table = new Integer[10][20];
     private HashMap<Integer, Actor> players = new HashMap<>();
     private final Random rand = new Random();
     private ArrayList<Treasure> treasures;
@@ -96,9 +100,6 @@ public class Table {
     }
 
     public ArrayList<Treasure> getTreasure() {
-        for (Treasure element : treasures) {
-            System.out.println(element);
-        }
         return treasures;
     }
 

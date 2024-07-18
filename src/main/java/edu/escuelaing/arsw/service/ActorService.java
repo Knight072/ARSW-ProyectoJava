@@ -1,6 +1,7 @@
 package edu.escuelaing.arsw.service;
 
-import edu.escuelaing.arsw.ActorFactory;
+import edu.escuelaing.arsw.service.actor.Actor;
+import edu.escuelaing.arsw.service.factory.ActorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,15 @@ public class ActorService {
         this.actorFactory = actorFactory;
     }
 
-    public void createActor(Integer tipoActor) {
-        actorFactory.createActor(tipoActor);
+    public Actor getActor(String id) {
+        return Actor.getPlayers().get(id);
+    }
+
+    public Actor createActor(Integer tipoActor) {
+        return actorFactory.createActor(tipoActor);
+    }
+
+    public void moveActor(Integer positionX, Integer positionY, String id) {
+        Actor.getPlayers().get(id).move(positionX, positionY);
     }
 }

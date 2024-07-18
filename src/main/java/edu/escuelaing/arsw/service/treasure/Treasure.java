@@ -1,4 +1,6 @@
-package edu.escuelaing.arsw;
+package edu.escuelaing.arsw.service.treasure;
+
+import edu.escuelaing.arsw.Table;
 
 import java.util.Random;
 

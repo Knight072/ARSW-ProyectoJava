@@ -1,6 +1,6 @@
 package edu.escuelaing.arsw.controller;
 
-import edu.escuelaing.arsw.Treasure;
+import edu.escuelaing.arsw.service.treasure.Treasure;
 import edu.escuelaing.arsw.service.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

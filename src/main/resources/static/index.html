@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test - Actor Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        #gameArea { border: 1px solid #ccc; width: 300px; height: 300px; position: relative; }
+        .cell { position: absolute; width: 28px; height: 28px; border: 1px solid #eee; }
+        .wall { background-color: #333; }
+        .path { background-color: #fff; }
+        .actor { width: 20px; height: 20px; border-radius: 50%; position: absolute; display: flex; justify-content: center; align-items: center; font-size: 10px; color: white; }
+        #log { margin-top: 20px; height: 200px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+<h1>WebSocket Test - Actor Game</h1>
+<div>
+    <button onclick="connect()">Conectar</button>
+    <button onclick="disconnect()">Desconectar</button>
+</div>
+<div>
+    <button onclick="createActor(1)">Crear Actor Tipo 1</button>
+    <button onclick="createActor(2)">Crear Actor Tipo 2</button>
+    <button onclick="createActor(3)">Crear Actor Tipo 3</button>
+</div>
+<div id="gameArea"></div>
+<div>
+    <input type="text" id="actorId" placeholder="ID del Actor">
+    <input type="number" id="posX" placeholder="Posición X">
+    <input type="number" id="posY" placeholder="Posición Y">
+    <button onclick="moveActor()">Mover Actor</button>
+</div>
+<div id="log"></div>
+
+<script>
+    let socket;
+    const gameArea = document.getElementById('gameArea');
+    const log = document.getElementById('log');
+    let gridSize = 10; // Asumimos un tablero de 10x10
+
+    function connect() {
+        socket = new WebSocket('ws://localhost:8080/ActorEndpoint');
+
+        socket.onopen = function(event) {
+            addToLog('Conectado al servidor WebSocket');
+        };
+
+        socket.onmessage = function(event) {
+            addToLog('Mensaje recibido: ' + event.data);
+            try {
+                if (event.data === "Connection established.") {
+                    addToLog('Conexión establecida con el servidor');
+                } else {
+                    const data = JSON.parse(event.data);
+                    if (Array.isArray(data)) {
+                        updateGameArea(data);
+                    } else {
+                        addToLog('Mensaje no reconocido: ' + event.data);
+                    }
+                }
+            } catch (e) {
+                console.error('Error al procesar el mensaje:', e);
+            }
+        };
+
+        socket.onclose = function(event) {
+            addToLog('Desconectado del servidor WebSocket');
+        };
+
+        socket.onerror = function(error) {
+            addToLog('Error en la conexión WebSocket: ' + error);
+        };
+    }
+
+    function disconnect() {
+        if (socket) {
+            socket.close();
+        }
+    }
+
+    function createActor(type) {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify({ tipoActor: type }));
+        } else {
+            addToLog('No conectado al servidor');
+        }
+    }
+
+    function moveActor() {
+        const id = document.getElementById('actorId').value;
+        const posX = document.getElementById('posX').value;
+        const posY = document.getElementById('posY').value;
+
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify({ id: id, positionX: parseInt(posX), positionY: parseInt(posY) }));
+        } else {
+            addToLog('No conectado al servidor');
+        }
+    }
+
+    function updateGameArea(tableData) {
+        gameArea.innerHTML = '';
+        gridSize = tableData.length;
+        const cellSize = 300 / gridSize;
+
+        for (let y = 0; y < gridSize; y++) {
+            for (let x = 0; x < gridSize; x++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.style.left = (x * cellSize) + 'px';
+                cell.style.top = (y * cellSize) + 'px';
+                cell.style.width = cellSize + 'px';
+                cell.style.height = cellSize + 'px';
+
+                if (tableData[y][x] === 1) {
+                    cell.classList.add('wall');
+                } else if (tableData[y][x] === 0) {
+                    cell.classList.add('path');
+                } else {
+                    // Es un actor
+                    cell.classList.add('path');
+                    const actor = document.createElement('div');
+                    actor.className = 'actor';
+                    actor.style.backgroundColor = getColorForActor(tableData[y][x]);
+                    actor.textContent = tableData[y][x];
+                    cell.appendChild(actor);
+                }
+
+                gameArea.appendChild(cell);
+            }
+        }
+    }
+
+    function getColorForActor(id) {
+        // Genera un color basado en el ID del actor
+        let hash = 0;
+        for (let i = 0; i < id.length; i++) {
+            hash = id.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        let color = '#';
+        for (let i = 0; i < 3; i++) {
+            const value = (hash >> (i * 8)) & 0xFF;
+            color += ('00' + value.toString(16)).substr(-2);
+        }
+        return color;
+    }
+
+    function addToLog(message) {
+        const logEntry = document.createElement('div');
+        logEntry.textContent = message;
+        log.appendChild(logEntry);
+        log.scrollTop = log.scrollHeight;
+    }
+</script>
+</body>
+</html>

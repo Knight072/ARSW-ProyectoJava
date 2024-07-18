@@ -1,8 +1,8 @@
-package edu.escuelaing.arsw;
+package edu.escuelaing.arsw.service.factory;
+
+import edu.escuelaing.arsw.service.treasure.Treasure;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,9 +15,9 @@ public class TreasureFactory {
     public TreasureFactory(Integer amount) {
         this.amount = amount;
         // Inicializar la lista de tipos de tesoro
-        typeTreasure.add("edu.escuelaing.arsw.GoldTreasure");
-        typeTreasure.add("edu.escuelaing.arsw.SilverTreasure");
-        typeTreasure.add("edu.escuelaing.arsw.DiamondTreasure");
+        typeTreasure.add("edu.escuelaing.arsw.service.treasure.GoldTreasure");
+        typeTreasure.add("edu.escuelaing.arsw.service.treasure.SilverTreasure");
+        typeTreasure.add("edu.escuelaing.arsw.service.treasure.DiamondTreasure");
 
         for (int index = 0; index < amount; index++) {
             String type = typeTreasure.get(rand.nextInt(typeTreasure.size()));

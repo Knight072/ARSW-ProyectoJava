@@ -1,7 +1,7 @@
 package edu.escuelaing.arsw.service;
 
 import edu.escuelaing.arsw.Table;
-import edu.escuelaing.arsw.Treasure;
+import edu.escuelaing.arsw.service.treasure.Treasure;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,14 +15,15 @@ public class TableService {
     }
 
     public Integer[][] getTable() {
+        table.createTreasure();
         return table.getTable();
     }
 
-    public void createTreasures(){
+    public void createTreasures() {
         table.createTreasure();
     }
 
-    public ArrayList<Treasure> getTreasures(){
+    public ArrayList<Treasure> getTreasures() {
         return table.getTreasure();
     }
 }

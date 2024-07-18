@@ -9,12 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class PoliceAndThieves {
-    private Integer[][] tableInt;
-    private Table table;
-
-    public PoliceAndThieves() {
-        this.table = Table.getInstance();
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(PoliceAndThieves.class, args);
