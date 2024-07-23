@@ -1,10 +1,9 @@
 package edu.escuelaing.arsw.service;
 
-import edu.escuelaing.arsw.Table;
 import edu.escuelaing.arsw.service.treasure.Treasure;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 @Service
 public class TableService {
@@ -23,7 +22,7 @@ public class TableService {
         table.createTreasure();
     }
 
-    public ArrayList<Treasure> getTreasures() {
+    public HashMap<String, Treasure> getTreasures() {
         return table.getTreasure();
     }
 }

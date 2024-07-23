@@ -1,6 +1,6 @@
 package edu.escuelaing.arsw.service.actor;
 
-import edu.escuelaing.arsw.Table;
+import edu.escuelaing.arsw.service.Table;
 
 import java.util.Random;
 
@@ -14,14 +14,22 @@ public class Thief extends Actor {
         do {
             this.positionX = rand.nextInt(9);
             this.positionY = rand.nextInt(9);
-        } while (table.getTable()[positionX][positionY] != 0 && table.getTable()[positionX][positionY] != 2);
+        } while (table.getTable()[positionX][positionY] != 0
+                && table.getTable()[positionX][positionY] != 2
+                && table.getTable()[positionX][positionY] != 4);
         table.getTable()[positionX][positionY] = number;
     }
 
     @Override
     public void move(Integer newPositionX, Integer newPositionY) {
-        if (this.table.getTable()[newPositionX][newPositionY] != 1) {
+        if (this.table.getTable()[newPositionX][newPositionY] == 0) {
             this.table.getTable()[positionX][positionY] = 0;
+            this.positionX = newPositionX;
+            this.positionY = newPositionY;
+            this.table.getTable()[positionX][positionY] = number;
+        } else if (this.table.getTable()[newPositionX][newPositionY] == 4) {
+            this.table.getTable()[positionX][positionY] = 0;
+            this.table.getTreasure().remove(newPositionX + Integer.toString(newPositionY));
             this.positionX = newPositionX;
             this.positionY = newPositionY;
             this.table.getTable()[positionX][positionY] = number;

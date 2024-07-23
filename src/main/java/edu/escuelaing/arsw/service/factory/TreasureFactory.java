@@ -4,10 +4,11 @@ import edu.escuelaing.arsw.service.treasure.Treasure;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class TreasureFactory {
-    private ArrayList<Treasure> treasure = new ArrayList<>();
+    private HashMap<String, Treasure> treasures = new HashMap<>();
     private ArrayList<String> typeTreasure = new ArrayList<>();
     private Random rand = new Random();
     private Integer amount;
@@ -24,8 +25,9 @@ public class TreasureFactory {
             try {
                 // Obtener la clase a partir de su nombre
                 Class<?> clase = Class.forName(type);
+                Treasure treasure = (Treasure) clase.getDeclaredConstructor().newInstance();
                 // Crear una nueva instancia de la clase
-                treasure.add((Treasure) clase.getDeclaredConstructor().newInstance());
+                treasures.put(Integer.toString( treasure.getPositionX()) + Integer.toString(treasure.getPositionY()),treasure);
             } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
                      InvocationTargetException e) {
                 throw new RuntimeException("Error al crear el producto: " + type, e);
@@ -33,17 +35,7 @@ public class TreasureFactory {
         }
     }
 
-    public ArrayList<Treasure> getTreasures(){
-        return treasure;
-    }
-
-    // Método para obtener un tesoro por su índice
-    public Treasure getTreasure(Integer index) {
-        return treasure.get(index);
-    }
-
-    // Método para agregar un nuevo tipo de tesoro
-    public void addTypeTreasure(String type) {
-        typeTreasure.add(type);
+    public HashMap<String, Treasure> getTreasures(){
+        return treasures;
     }
 }

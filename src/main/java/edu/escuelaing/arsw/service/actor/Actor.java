@@ -1,6 +1,6 @@
 package edu.escuelaing.arsw.service.actor;
 
-import edu.escuelaing.arsw.Table;
+import edu.escuelaing.arsw.service.Table;
 
 import java.util.HashMap;
 
@@ -24,9 +24,14 @@ public abstract class Actor {
         return players;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     public int getPositionX() {
         return positionX;
     }
+
     public int getPositionY() {
         return positionY;
     }

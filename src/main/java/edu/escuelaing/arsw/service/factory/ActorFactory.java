@@ -16,6 +16,7 @@ public class ActorFactory implements ActorFactoryMethod {
             thief.getPlayers().put(id, thief);
         } else if (tipoActor == 2) {
             Actor police = new Police(id);
+            police.getPlayers().put(id, police);
         }
         return Actor.getPlayers().get(id);
     }

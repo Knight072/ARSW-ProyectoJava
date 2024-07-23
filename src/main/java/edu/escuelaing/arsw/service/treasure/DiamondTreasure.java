@@ -5,12 +5,10 @@ import edu.escuelaing.arsw.service.treasure.Treasure;
 public class DiamondTreasure extends Treasure {
     public DiamondTreasure() {
         this.score = 300;
-        this.positionX = rand.nextInt(9);
-        this.positionY = rand.nextInt(9);
-        while (table.getTable()[positionX][positionY] != 0 && table.getTable()[positionX][positionY] != 2 && table.getTable()[positionX][positionY] != 3) {
+        do {
             this.positionX = rand.nextInt(9);
-            this.positionY = rand.nextInt(9);
-        }
+            this.positionY = rand.nextInt(19);
+        } while (table.getTable()[positionX][positionY] != 0 && table.getTable()[positionX][positionY] != 2 && table.getTable()[positionX][positionY] != 3);
         table.getTable()[positionX][positionY] = number;
     }
 }
