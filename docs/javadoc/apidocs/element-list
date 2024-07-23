@@ -1,0 +1,9 @@
+edu.escuelaing.arsw
+edu.escuelaing.arsw.configuration
+edu.escuelaing.arsw.controller
+edu.escuelaing.arsw.repository
+edu.escuelaing.arsw.service
+edu.escuelaing.arsw.service.actor
+edu.escuelaing.arsw.service.factory
+edu.escuelaing.arsw.service.treasure
+edu.escuelaing.arsw.websocket
