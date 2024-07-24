@@ -4,6 +4,12 @@
 
 "Police and Thieves" es un juego en el que los jugadores pueden controlar personajes de tipo Policía o Ladrón en un tablero generado dinámicamente. El juego permite a los jugadores moverse por el tablero, interactuar con tesoros y jugar en un entorno configurado con Spring Boot y WebSocket.
 
+![image](https://github.com/user-attachments/assets/b2ff2e98-4d1e-48ef-aa8f-3012dae0d494)
+
+![image](https://github.com/user-attachments/assets/6ef69193-c7c4-4e5e-ae7e-08c770172c7f)
+
+![image](https://github.com/user-attachments/assets/31b56ba3-d4df-4711-b32c-f5a67d8f55dc)
+
 ## Arquitectura
 
 ![Blank diagram - Page 1 (1)](https://github.com/user-attachments/assets/984f2a4e-efda-4a97-9efa-080cce9eee54)
