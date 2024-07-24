@@ -6,6 +6,9 @@
 
 ## Arquitectura
 
+![Blank diagram - Page 1 (1)](https://github.com/user-attachments/assets/984f2a4e-efda-4a97-9efa-080cce9eee54)
+
+
 La arquitectura del proyecto está compuesta por varios componentes clave que interactúan para proporcionar la funcionalidad del juego. A continuación se detalla la arquitectura del sistema:
 
 ### Componentes Principales
