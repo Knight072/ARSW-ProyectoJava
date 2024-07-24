@@ -81,6 +81,45 @@ La arquitectura del proyecto está compuesta por varios componentes clave que in
 
 `WebSocketConfig` configura el soporte para WebSocket en la aplicación.
 
+## Tests y Cobertura
+
+El proyecto incluye una suite de pruebas para asegurar la calidad y el correcto funcionamiento de los diferentes componentes. A continuación se presenta un resumen de la cobertura de pruebas por paquete:
+
+| Paquete                              | Cobertura de Instrucciones | Cobertura de Ramas |
+|--------------------------------------|----------------------------|---------------------|
+| edu.escuelaing.arsw.websocket        | 36%                        | 13%                 |
+| edu.escuelaing.arsw.controller       | 0%                         | 0%                  |
+| edu.escuelaing.arsw.service          | 88%                        | 97%                 |
+| edu.escuelaing.arsw.repository       | 0%                         | 0%                  |
+| edu.escuelaing.arsw.configuration    | 73%                        | N/A                 |
+| edu.escuelaing.arsw.service.factory  | 89%                        | 83%                 |
+| edu.escuelaing.arsw                  | 37%                        | N/A                 |
+| edu.escuelaing.arsw.service.treasure | 98%                        | 66%                 |
+| edu.escuelaing.arsw.service.actor    | 99%                        | 83%                 |
+
+Cobertura total del proyecto: 73% de instrucciones y 68% de ramas.
+
+### Resumen de Pruebas
+
+- Total de líneas: 354
+- Métodos probados: 50 de 102
+- Clases probadas: 10 de 26
+
+### Áreas de Mejora
+
+Basándonos en estos resultados, se identifican las siguientes áreas que requieren mejora en la cobertura de pruebas:
+
+1. **Controladores (edu.escuelaing.arsw.controller)**: Actualmente sin cobertura, se deben implementar pruebas para los endpoints REST.
+2. **WebSocket (edu.escuelaing.arsw.websocket)**: Con una cobertura baja, se necesitan más pruebas para los componentes de comunicación en tiempo real.
+3. **Repositorio (edu.escuelaing.arsw.repository)**: Sin cobertura, es necesario añadir pruebas para las operaciones de persistencia.
+
+### Ejecutar Pruebas
+
+Para ejecutar las pruebas y generar un informe de cobertura, utiliza el siguiente comando de Maven:
+
+```bash
+mvn test jacoco:report
+
 ### Cómo Ejecutar el Proyecto
 
 1. Asegúrate de tener Redis en ejecución.
