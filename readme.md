@@ -97,6 +97,10 @@ El proyecto incluye una suite de pruebas para asegurar la calidad y el correcto 
 | edu.escuelaing.arsw.service.treasure | 98%                        | 66%                 |
 | edu.escuelaing.arsw.service.actor    | 99%                        | 83%                 |
 
+
+![image](https://github.com/user-attachments/assets/387a792e-817a-4b86-bbe7-91428781b0bb)
+
+
 Cobertura total del proyecto: 73% de instrucciones y 68% de ramas.
 
 ### Resumen de Pruebas
